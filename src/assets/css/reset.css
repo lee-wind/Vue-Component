@@ -1,0 +1,139 @@
+body, h1, h2, h3, h4, h5, h6, p, hr,
+a, img, div, span,
+ul, ol, li, dl, dt, dd,
+table, thead, tbody, tr, th, td,
+form, input, select, option, textarea,
+label, button
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: inherit;
+    color: inherit;
+}
+ul{
+    list-style: none;
+}
+input, select, textarea, button{
+    border: none;
+    outline: none;
+    background-color: #ffffff;
+}
+a{
+    text-decoration: none;
+}
+a:link, a:visited, a:hover, a:active{
+    color: #000000;
+}
+a, input[type=submit], input[type=button], button{
+    cursor: pointer
+}
+iframe{
+    outline: none;
+    width: 0;
+    height: 0;
+    border: none;
+}
+
+table{
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.block{
+    display: block;
+}
+.inline-block{
+    display: inline-block;
+    vertical-align: middle;
+}
+.inline{
+    display: inline;
+}
+.display-block{
+    display: block;
+}
+.display-none{
+  display: none;
+}
+.text-left{
+    text-align: left;
+}
+.text-right{
+    text-align: right;
+}
+.text-center{
+    text-align: center;
+}
+.text-justify{
+    text-align: justify;
+}
+.absolute-margin-center{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.absolute-transform-center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.clearfix:after{
+    display: block;
+    content: '';
+    height: 0;
+    clear: both;
+    zoom: 1;
+}
+.float-left{
+    float: left;
+}
+.float-right{
+    float: right;
+}
+.border-none{
+    border: none;
+}
+.relative{
+    position: relative;
+}
+.absolute{
+    position: absolute;
+}
+.fixed-top{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.fixed-bottom{
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+.pointer{
+    cursor: pointer;
+}
+.text-ellipsis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.vertical-middle{
+    vertical-align: middle;
+}
+.bold{
+    font-weight: bold;
+}
+.normal{
+    font-weight: normal;
+}
+.nowrap{
+    white-space: nowrap;
+}
+/*****************************************/
