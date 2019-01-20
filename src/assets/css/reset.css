@@ -68,26 +68,14 @@ table{
 .text-justify{
     text-align: justify;
 }
-.absolute-margin-center{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-}
-.absolute-transform-center{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.clearfix{
+    zoom: 1;
 }
 .clearfix:after{
     display: block;
     content: '';
     height: 0;
     clear: both;
-    zoom: 1;
 }
 .float-left{
     float: left;
@@ -97,6 +85,21 @@ table{
 }
 .border-none{
     border: none;
+}
+.vertical-middle{
+    vertical-align: middle;
+}
+.pointer{
+    cursor: pointer;
+}
+.bold{
+    font-weight: bold;
+}
+.normal{
+    font-weight: normal;
+}
+.nowrap{
+    white-space: nowrap;
 }
 .relative{
     position: relative;
@@ -116,24 +119,23 @@ table{
     bottom: 0;
     left: 0;
 }
-.pointer{
-    cursor: pointer;
+.absolute-margin-center{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.absolute-transform-center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .text-ellipsis{
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
-}
-.vertical-middle{
-    vertical-align: middle;
-}
-.bold{
-    font-weight: bold;
-}
-.normal{
-    font-weight: normal;
-}
-.nowrap{
     white-space: nowrap;
 }
 /*****************************************/

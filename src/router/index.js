@@ -5,6 +5,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Pagination from '@/components/Pagination'
 import Plugin from '@/components/Plugin'
 import Table from '@/components/Table'
+import Form from '@/components/Form'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ const router =  new Router({
           path: '/table',
           name: 'table',
           component: Table
+      },
+      {
+          path: '/form',
+          name: 'Form',
+          component: Form
       },
   ]
 });

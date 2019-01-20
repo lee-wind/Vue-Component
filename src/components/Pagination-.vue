@@ -10,14 +10,14 @@
                    @click="selectPage(firstPage)">{{firstPage}}</a>
             </li>
             <li class="item" v-if="isLeftEllipsisShow">
-                <a>左...</a>
+                <a>...</a>
             </li>
             <li class="item" v-for="page in pages">
                 <a :class="{ active: currentPage === page }"
                    @click="selectPage(page)">{{page}}</a>
             </li>
             <li class="item" v-if="isRightEllipsisShow">
-                <a>右...</a>
+                <a>...</a>
             </li>
             <li class="item">
                 <a :class="{ active: currentPage ===  totalPage }"
@@ -39,8 +39,8 @@
         name: "Pagination",
         data(){
             return{
-                total: 402,
-                //total: 200,
+                // total: 402,
+                total: 101,
                 currentPage: 1,
                 pageSize: 10,
                 pageNumber: 10,
@@ -63,49 +63,44 @@
                     end = this.pageNumber - 1;
                     return this.getPages(start, end);
                 }
-                if(!this.isLeftEllipsisShow){
+                if(this.isOnlyRightEllipsisShow){
                     end = this.pageNumber - 2;
                     return this.getPages(start, end);
                 }
-                if(!this.isRightEllipsisShow){
-                    start = this.rightEllipsisValue;
-                    end = this.totalPage - 1;
-                    return this.getPages(start, end);
-                }
-
-                const formerStart = sessionStorage.getItem("formerStart") ? Number.parseInt(sessionStorage.getItem("formerStart")) : 0;
-                const formerEnd = sessionStorage.getItem("formerEnd") ? Number.parseInt(sessionStorage.getItem("formerEnd")) : 0;
-                //console.log(formerStart);
-                //console.log(formerEnd);
-                //console.log(this.currentPage);
-                if(formerStart < this.currentPage && this.currentPage <= formerEnd){
-                    //console.log("范围内");
-                    start = formerStart;
-                    end = formerEnd;
-                }else{
-                    //console.log("范围外");
-                    start = this.currentPage;
-                    end = start  + (this.pageNumber - 5);
-                }
-                sessionStorage.setItem("formerStart", start);
-                sessionStorage.setItem("formerEnd", end);
-                return this.getPages(start, end);
+                // if(this.isRightEllipsisShow){
+                //     actualPageNumber--;
+                //     end = this.rightEllipsisValue;
+                // }
+                // if(this.isLeftEllipsisShow){
+                //     actualPageNumber--;
+                //     start = this.leftEllipsisValue;
+                // }
+                //end = start + actualPageNumber;
+                console.log(start);
+                console.log(end);
+                //console.log(actualPageNumber);
             },
             isOverPageNumber(){
                 return this.totalPage > this.pageNumber;
             },
             leftEllipsisValue(){
-                return this.firstPage + 3;
+                return this.firstPage + 2;
             },
             rightEllipsisValue(){
-                return this.totalPage - this.pageNumber + 3;
+                return this.totalPage - 2;
             },
             isLeftEllipsisShow(){
-                return this.isOverPageNumber && this.currentPage >= this.leftEllipsisValue;
+                return this.isOverPageNumber && this.currentPage > this.leftEllipsisValue;
             },
             isRightEllipsisShow(){
                 return this.isOverPageNumber && this.currentPage < this.rightEllipsisValue;
             },
+            isOnlyLeftEllipsisShow(){
+                return   this.currentPage > this.totalPage - this.pageNumber - 2;
+            },
+            isOnlyRightEllipsisShow(){
+                return this.currentPage < 3;
+            }
 
         },
         methods: {
@@ -126,8 +121,7 @@
             },
             searchByPage(){
                 if(this.formPage){
-                    this.selectPage(Number.parseInt(this.formPage));
-                    this.formPage = '';
+                    this.selectPage(this.formPage);
                 }
             },
             getPages(start, end){
