@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Bus from '@/bus'
-import HelloWorld from '@/components/HelloWorld'
-import Pagination from '@/components/Pagination'
+import Index from '@/components/Index'
 import Plugin from '@/components/Plugin'
 import Table from '@/components/Table'
 import Form from '@/components/Form'
@@ -13,12 +12,8 @@ const router =  new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },{
-      path: '/pagination',
-      name: 'Pagination',
-      component: Pagination
+      name: 'Index',
+      component: Index
     },
       {
           path: '/plugin',
