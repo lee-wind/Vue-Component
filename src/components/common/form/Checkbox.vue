@@ -1,13 +1,13 @@
 <template>
     <div class="checkbox">
-        <input :id="value" type="checkbox" :value="value"
-               :checked="model.includes(value)"
+        <input :id="value" type="checkbox" v-model="values" :value="value"
                @change="change">
         <label :for="value"></label>
         <span>
             <slot></slot>
         </span>
     </div>
+    <!--:checked="values.includes(value)"-->
 </template>
 
 <script>
@@ -21,10 +21,15 @@
             model: '',
             value: ''
         },
+        data(){
+            return{
+                values: this.model
+            }
+        },
         methods: {
             change($event){
-                console.log($event.target.value);
-                this.$emit('change', $event.target.value)
+                console.log(this.values);
+                this.$emit('change', this.values)
             }
         }
     }

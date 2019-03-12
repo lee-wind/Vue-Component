@@ -2,24 +2,26 @@
     <div class="index">
         <Pagination :current-page="currentPage" :page-size="pageSize"
                     :total="total" @page-change="pageChange"/>
-        <Calendar></Calendar>
+        <p>日期：{{date}}</p>
+        <Date v-model="date"></Date>
     </div>
 </template>
 
 <script>
     import Pagination from './common/pagination/Pagination'
-    import Calendar from './common/calendar/Calendar'
+    import Date from './common/calendar/Date'
     export default {
         name: "Index",
         components: {
             Pagination,
-            Calendar
+            Date
         },
         data(){
             return {
                 total: 11,
                 currentPage: 1,
                 pageSize: 10,
+                date: ''
             }
         },
         methods: {

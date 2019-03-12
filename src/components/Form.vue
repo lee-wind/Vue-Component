@@ -12,20 +12,32 @@
                    :value="checkbox.id" :key="checkbox.id">
                 {{checkbox.value}}</Checkbox>
         </div>
+        {{name}}
+        <div class="form-item">
+            <Input label="姓名" v-model="name" required="true" requireText="不能为空" validate=""/>
+        </div>
+        <div class="form-item">
+            <Submit/>
+        </div>
     </form>
 </template>
 
 <script>
+    import Input from './common/form/Input'
+    import Submit from './common/form/Submit'
     import Radio from './common/form/Radio'
     import Checkbox from './common/form/Checkbox'
     export default {
         name: "Form",
         components: {
+            Input,
+            Submit,
             Radio,
             Checkbox
         },
         data(){
             return{
+                name: 'wind',
                 radios: [{
                     id: 1,
                     value: '男'
@@ -43,6 +55,9 @@
                 selectRadio: 2,
                 selectCheckbox: [],
             }
+        },
+        mounted(){
+            this.selectCheckbox.push(3);
         }
     }
 </script>
