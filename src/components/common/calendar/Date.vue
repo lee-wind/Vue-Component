@@ -74,20 +74,20 @@
             fillDate(year, month){
                 this.reset();
                 const firstDay = new Date(year, month, 1).getDay(); //当月第一天星期几
-                const lastDate = new Date(year, month + 1, 0).getDate(); //当月最后一天星期几
+                const lastDay = new Date(year, month + 1, 0).getDate(); //当月最后一天星期几
                 const formerMonthLastDate = new Date(year, month, 0).getDate();
                 console.log(firstDay);
-                console.log(lastDate);
+                console.log(lastDay);
                 console.log(formerMonthLastDate);
                 let prevMonthDateLength = firstDay === 0 ? 7 : firstDay - 1;
                 for(let i = formerMonthLastDate - prevMonthDateLength;
                     i <= formerMonthLastDate; i++){
                     this.prevMonthDate.push(i);
                 }
-                for(let i = 1; i <= lastDate; i++){
+                for(let i = 1; i <= lastDay; i++){
                     this.currentMonthDate.push(i);
                 }
-                let nextMonthLength = 42 - prevMonthDateLength - lastDate;
+                let nextMonthLength = 42 - prevMonthDateLength - lastDay;
                 for(let i = 1; i < nextMonthLength; i++){
                     this.nextMonthDate.push(i);
                 }
@@ -115,8 +115,19 @@
                 this.fillDate(this.year, this.month);
             },
             selectDate(date, dateArea){
+                switch (dateArea) {
+                    case 'prevMonthDate':
+                        this.month --;
+                        this.dateArea = 'currentMonthDate';
+                        break;
+                    case 'nextMonthDate':
+                        this.month ++;
+                        this.dateArea = 'currentMonthDate';
+                        break;
+                }
+                this.fillDate(this.year, this.month);
                 this.date = date;
-                this.dateArea = dateArea;
+                //this.dateArea = dateArea;
                 this.dateText = this.year + '-' + (this.month + 1) + '-' + this.date;
             },
             reset(){
