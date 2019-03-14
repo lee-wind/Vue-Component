@@ -10,6 +10,7 @@
         <Time v-model="time"></Time>
         <p>时间：{{time}}</p><button @click="setTime">设置时间</button>
         <Time v-model="time"></Time>
+        <Select :list="list" id="id" value="text" v-model="selected"></Select>
     </div>
 </template>
 
@@ -17,12 +18,14 @@
     import Pagination from './common/pagination/Pagination'
     import Date from './common/calendar/Date'
     import Time from './common/calendar/Time'
+    import Select from './common/form/Select'
     export default {
         name: "Index",
         components: {
             Pagination,
             Date,
             Time,
+            Select
         },
         data(){
             return {
@@ -30,7 +33,15 @@
                 currentPage: 1,
                 pageSize: 10,
                 date: '',
-                time: ''
+                time: '',
+                list: [{
+                    id: 1,
+                    text: 'wind'
+                },{
+                    id: 2,
+                    text: 'sun'
+                }],
+                selected: ''
             }
         },
         methods: {
