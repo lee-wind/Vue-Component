@@ -1,14 +1,16 @@
 <template>
     <form>
-        {{selectRadio}}
+        {{selectedRadio}}
         <div class="form-item">
-            <Radio v-for="radio in radios" v-model="selectRadio"
+            <button @click="setRadio">设置Radio</button>
+            <Radio v-for="radio in radios" v-model="selectedRadio"
                    name="'sex'" :value="radio.id" :key="radio.id">
                 {{radio.value}}</Radio>
         </div>
-        {{selectCheckbox}}
+        {{selectedCheckbox}}
         <div class="form-item">
-            <Checkbox v-for="checkbox in checkboxs" v-model="selectCheckbox"
+            <button @click="setCheckBox">设置checkBox</button>
+            <Checkbox v-for="checkbox in checkBoxs" v-model="selectedCheckbox"
                    :value="checkbox.id" :key="checkbox.id">
                 {{checkbox.value}}</Checkbox>
         </div>
@@ -38,26 +40,34 @@
         data(){
             return{
                 name: 'wind',
-                radios: [{
+                radios: [],
+                checkBoxs: [],
+                selectedRadio: 2,
+                selectedCheckbox: [3],
+            }
+        },
+        mounted(){
+            //this.selectedCheckbox.push(3);
+        },
+        methods: {
+            setRadio(){
+                this.radios = [{
                     id: 1,
                     value: '男'
                 },{
                     id: 2,
                     value: '女'
-                }],
-                checkboxs: [{
+                }]
+            },
+            setCheckBox(){
+                this.checkBoxs = [{
                     id: 3,
                     value: '游戏'
                 },{
                     id: 4,
                     value: '音乐'
-                }],
-                selectRadio: 2,
-                selectCheckbox: [],
+                }]
             }
-        },
-        mounted(){
-            this.selectCheckbox.push(3);
         }
     }
 </script>

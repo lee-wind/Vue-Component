@@ -39,8 +39,8 @@
             position: relative;
             display: inline-block;
             vertical-align: middle;
-            width: 15px;
-            height: 15px;
+            width: 30px;
+            height: 30px;
             border: 1px solid grey;
             border-radius: 50%;
             cursor: pointer;
@@ -48,8 +48,8 @@
                 content: '';
                 display: block;
                 position: absolute;
-                width: 7px;
-                height: 7px;
+                width: 14px;
+                height: 14px;
                 top: 0;
                 right: 0;
                 bottom: 0;

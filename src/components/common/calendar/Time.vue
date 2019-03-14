@@ -1,6 +1,6 @@
 <template>
-    <div class="time">
-        <input type="text" v-model="timeText" @click="showTime">
+    <div class="time" @click="stopPropagation($event)">
+        <input type="text" :value="time" @focus="showTime" @input="updateTime($event)">
         <div class="time-container" v-if="timeShow">
             <div class="hours" v-if="hourShow">
                 <div class="header">
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+    import Bus from '@/bus'
     export default {
         name: "Time",
         model: {
@@ -61,7 +62,6 @@
         },
         data(){
             return{
-                timeText: '',
                 hours: [
 
                 ],
@@ -71,9 +71,9 @@
                 seconds: [
 
                 ],
-                hour: '00',
-                minute: '00',
-                second: '00',
+                hour: '',
+                minute: '',
+                second: '',
                 timeShow: false,
                 hourShow: true,
                 minuteShow: false,
@@ -82,7 +82,12 @@
         },
         created(){
             this.initTime();
-            //this.setTimeText();
+            Bus.$on('hideTime', () => { //Time组件外其他元素点击隐藏Time组件
+                if(this.timeShow){
+                    console.log('隐藏时间');
+                    this.close();
+                }
+            })
         },
         methods: {
             initTime(){
@@ -107,39 +112,27 @@
                     }
                     this.seconds.push(i);
                 }
-                // let date = new Date();
-                // console.log(this.time);
-                // if(this.time){
-                //     this.hour = this.time.substring(0, 2);
-                //     this.minute = this.time.substring(3, 5);
-                //     this.second = this.time.substring(6);
-                // }else{
-                //     this.hour = this.format(date.getHours());
-                //     this.minute = this.format(date.getMinutes());
-                //     this.second = this.format(date.getSeconds());
-                // }
             },
             showTime(){
-                this.timeShow = true;
-                if(!this.time){
-                    this.initTime();
+                Bus.$emit('hideTime'); //通知其他Time组件下拉隐藏
+                Bus.$emit('hideDate');
+                if(!this.timeShow){
+                    this.timeShow = true;
                 }
             },
             selectHour(hour){
-                //this.hour = hour;
                 this.hourShow = false;
                 this.minuteShow = true;
-                //this.setTimeText();
+                this.$emit('change', hour + ':' + this.minute + ':' + this.second);
             },
             selectMinute(minute){
-                //this.minute = minute;
                 this.minuteShow = false;
                 this.secondShow = true;
-                this.setTimeText();
+                this.$emit('change', this.hour + ':' + minute + ':' + this.second);
             },
             selectSecond(second){
-                //this.second = second;
-                this.setTimeText();
+                this.second = second;
+                this.$emit('change', this.hour + ':' + this.minute + ':' + second);
             },
             toHour(){
                 this.minuteShow = false;
@@ -150,24 +143,35 @@
                 this.minuteShow = true;
             },
             close(){
-                this.timeShow = false;
+                this.$emit('change', this.hour + ':' + this.minute + ':' + this.second);
                 this.reset();
+                this.timeShow = false;
             },
             reset(){
-                this.hour = true;
-                this.minute = false;
-                this.second = false;
-            },
-            setTimeText(){
-                this.timeText = this.hour + ':' + this.minute + ':' + this.second;
+                this.hourShow = true;
+                this.minuteShow = false;
+                this.secondShow = false;
             },
             format(text){
                 return text < 10 ? ('0' + text) : text;
+            },
+            updateTime(event){
+                let target = event.target || event.srcElement;
+                this.$emit('change', target.value);
+            },
+            stopPropagation(event){
+                event.stopPropagation ? event.stopPropagation() : event.cancelBubble = true;
             }
         },
         watch: {
-            time(newValue){
-               this.$emit('change', newValue);
+            time: {
+                handler(newValue){
+                    let date = new Date();
+                    this.hour = newValue.substring(0, 2) ? newValue.substring(0, 2) : this.format(date.getHours());
+                    this.minute = newValue.substring(3, 5) ? newValue.substring(3, 5) : this.format(date.getMinutes());
+                    this.second = newValue.substring(6) ? newValue.substring(6) : this.format(date.getSeconds());
+                },
+                immediate: true
             },
         }
     }
@@ -180,11 +184,19 @@
         /*border: 1px solid #eeeeee;*/
     }
     .time{
+        position: relative;
+        display: inline-block;
+        width: calc((30px + 5px * 2) * 7 + 1px * 2);
         margin: 5px;
+        input{
+            width: 100%;
+        }
         .time-container{
-            width: calc((30px + 5px * 2) * 7 + 1px * 2);
+            position: absolute;
             border: 1px solid #eeeeee;
             font-size: 16px;
+            z-index: 999;
+            background-color: #ffffff;
             .header{
                 p{
                     text-align: center;

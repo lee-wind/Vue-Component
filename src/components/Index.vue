@@ -2,9 +2,13 @@
     <div class="index">
         <Pagination :current-page="currentPage" :page-size="pageSize"
                     :total="total" @page-change="pageChange"/>
-        <p>日期：{{date}}</p>
-        <!--<Date v-model="date"></Date>-->
-        <p>时间：{{time}}</p>
+        <p>日期：{{date}}</p><button @click="setDate">设置日期</button>
+        <Date v-model="date"></Date>
+        <p>日期：{{date}}</p><button @click="setDate">设置日期</button>
+        <Date v-model="date"></Date>
+        <p>时间：{{time}}</p><button @click="setTime">设置时间</button>
+        <Time v-model="time"></Time>
+        <p>时间：{{time}}</p><button @click="setTime">设置时间</button>
         <Time v-model="time"></Time>
     </div>
 </template>
@@ -26,13 +30,19 @@
                 currentPage: 1,
                 pageSize: 10,
                 date: '',
-                time: '14:09:08'
+                time: ''
             }
         },
         methods: {
             pageChange(page){
                 console.log(page);
                 this.currentPage = page;
+            },
+            setDate(){
+              this.date = '2019-03-05'
+            },
+            setTime(){
+                this.time = '14:09:08';
             }
         }
     }
