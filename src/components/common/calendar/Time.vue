@@ -116,6 +116,7 @@
             showTime(){
                 Bus.$emit('hideTime'); //通知其他Time组件下拉隐藏
                 Bus.$emit('hideDate');
+                Bus.$emit('hideSelectList');
                 if(!this.timeShow){
                     this.timeShow = true;
                 }

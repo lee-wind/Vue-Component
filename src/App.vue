@@ -1,5 +1,5 @@
 <template>
-  <div id="app" @click="hideComponent($event)">
+  <div id="app" @click="hideComponent">
       <transition name="fade" mode="out-in">
           <router-view/>
       </transition>
@@ -14,9 +14,10 @@ export default {
 
     },
     methods:{
-        hideComponent(event){
-            Bus.$emit('hideDate', event);
-            Bus.$emit('hideTime', event);
+        hideComponent(){
+            Bus.$emit('hideDate');
+            Bus.$emit('hideTime');
+            Bus.$emit('hideSelectList');
         }
     }
 }

@@ -3,10 +3,14 @@
         <input :id="value" type="radio" :name="name"
                :value="value" :checked="model == value"
                @click="change">
-        <label :for="value"></label>
-        <span>
-            <slot></slot>
-        </span>
+        <label :for="value">
+            <span class="icon">
+
+            </span>
+            <span class="text">
+                <slot></slot>
+            </span>
+        </label>
     </div>
 </template>
 
@@ -35,41 +39,53 @@
     .radio{
         display: inline-block;
         margin: 0 5px;
+        font-size: 28px;
         label{
-            position: relative;
             display: inline-block;
-            vertical-align: middle;
-            width: 30px;
-            height: 30px;
-            border: 1px solid grey;
-            border-radius: 50%;
-            cursor: pointer;
-            &::after{
-                content: '';
-                display: block;
+            .icon{
                 position: absolute;
-                width: 14px;
-                height: 14px;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                margin: auto;
+                /*display: inline-block;*/
+                /*vertical-align: middle;*/
+                width: 30px;
+                height: 30px;
+                border: 1px solid grey;
                 border-radius: 50%;
-                background-color: grey;
+                cursor: pointer;
+                &::before{
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    width: 14px;
+                    height: 14px;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    margin: auto;
+                    border-radius: 50%;
+                    background-color: grey;
+                }
             }
+            .text{
+                /*display: inline-block;*/
+                /*vertical-align: middle;*/
+            }
+            /*span{*/
+                /*margin-left: 14px;*/
+            /*}*/
         }
         input[type=radio]{
             display: none;
-            &:checked+label {
-                border: 1px solid dodgerblue;
-                &::after {
-                    background-color: dodgerblue;
-                }
-            }
-            &:checked+label+span{
-                color: dodgerblue;
-            }
+            /*&:checked+label {*/
+                /*color: dodgerblue;*/
+                /*border: 1px solid dodgerblue;*/
+                /*&::after {*/
+                    /*background-color: dodgerblue;*/
+                /*}*/
+            /*}*/
+            /*&:checked+label+span{*/
+                /*color: dodgerblue;*/
+            /*}*/
         }
     }
 </style>

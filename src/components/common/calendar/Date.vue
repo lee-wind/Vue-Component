@@ -147,6 +147,7 @@
             showDate(){
                 Bus.$emit('hideDate'); //通知其他Date组件下拉隐藏
                 Bus.$emit('hideTime');
+                Bus.$emit('hideSelectList');
                 if(!this.dateShow){
                     this.dateShow = true;
                 }
