@@ -1,6 +1,12 @@
-# demo
+# Vue-Component
 
-> A Vue.js project
+Vue组件、插件开发
+
+组件:  
+Select, Pagination, Date, Time, Radio, CheckBox, Input, Table  
+
+插件:  
+Alert, Confirm, Modal
 
 ## Build Setup
 

@@ -39,22 +39,22 @@
     export default {
         name: "Pagination",
         props: {
-            total: {
+            total: { //总条数
                 default: 0
             },
-            currentPage: {
+            currentPage: { //当前页
                 default: 1
             },
-            pageSize: {
+            pageSize: { //每页多少个
                 default: 10
             },
-            pageNumber: {
+            pageNumber: {  //页码数量
                 default: 10
             },
         },
         data(){
             return{
-                firstPage: 1,
+                firstPage: 1, //第一页
                 formerPage: null,
                 formPage: ''
                 // pages: [
@@ -66,7 +66,7 @@
             hasData(){
                 return this.total > 0;
             },
-            totalPage(){
+            totalPage(){ //总页数
                 return Math.ceil(this.total / this.pageSize);
             },
             pages(){
@@ -78,11 +78,13 @@
                 }
                 if(!this.isLeftEllipsisShow){
                     end = this.pageNumber - 2;
+                    this.setSessionStorage(1, end);
                     return this.getPages(start, end);
                 }
                 if(!this.isRightEllipsisShow){
                     start = this.rightEllipsisValue;
                     end = this.totalPage - 1;
+                    this.setSessionStorage(start, end);
                     return this.getPages(start, end);
                 }
 
@@ -95,15 +97,17 @@
                     start = this.currentPage;
                     end = start  + (this.pageNumber - 5);
                 }
-                sessionStorage.setItem("formerStart", start);
-                sessionStorage.setItem("formerEnd", end);
+                this.setSessionStorage(start, end);
+                // sessionStorage.setItem("formerStart", start);
+                // sessionStorage.setItem("formerEnd", end);
                 return this.getPages(start, end);
             },
             isOverPageNumber(){
                 return this.totalPage > this.pageNumber;
             },
             leftEllipsisValue(){
-                return this.firstPage + 3;
+                return this.pageNumber - 1;
+                //return this.firstPage + 3;
             },
             rightEllipsisValue(){
                 return this.totalPage - this.pageNumber + 3;
@@ -117,6 +121,10 @@
 
         },
         methods: {
+            setSessionStorage(start, end){
+                sessionStorage.setItem("formerStart", start);
+                sessionStorage.setItem("formerEnd", end);
+            },
             selectPage(currentPage){
                 //this.currentPage = currentPage;
                 this.$emit('page-change', currentPage);

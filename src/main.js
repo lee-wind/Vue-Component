@@ -7,7 +7,7 @@ import router from './router'
 import '@/assets/css/reset.css'
 import '@/assets/css/common.scss'
 
-import './assets/js/flexible'
+// import './assets/js/flexible'
 
 import MyMask from '@/plugins/mask/MyMask'
 import Message from '@/plugins/message'

@@ -3,7 +3,7 @@
         <transition name="slide" @after-leave="afterLeave">
             <div class="container" v-if="show">
                 <div class="header">
-                    <span class="close" @click="close"></span>
+                    <span class="close pointer" @click="close"></span>
                     <p class="title text-ellipsis">请确认</p>
                 </div>
                 <div class="body">
@@ -43,6 +43,7 @@
         transition: all .3s;
     }
     .confirm{
+        font-size: 18px;
         &.fade-in{
             background-color: rgba(0, 0, 0, .5);
             @include transition;
@@ -52,7 +53,7 @@
             @include transition;
         }
         @mixin absolute{
-            position: absolute;
+            position: fixed;
             width: 100%;
             height: 100%;
             top: 0;
@@ -70,6 +71,7 @@
             @include center;
             background-color: #ffffff;
             .header{
+                padding: 10px;
                 .close{
                     float: right;
                     &::after{
@@ -79,11 +81,12 @@
                 }
             }
             .body{
-                /*width: 200px;*/
+                width: 300px;
+                padding: 10px;
                 min-height: 100px;
             }
             .footer{
-
+                padding: 10px;
             }
         }
         @mixin slide{

@@ -187,8 +187,9 @@
     .time{
         position: relative;
         display: inline-block;
+        vertical-align: top;
         width: calc((30px + 5px * 2) * 7 + 1px * 2);
-        margin: 5px;
+        /*margin: 5px;*/
         input{
             width: 100%;
         }

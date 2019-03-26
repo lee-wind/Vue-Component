@@ -5,8 +5,8 @@ export default {
     install (Vue, options){
         Vue.prototype.$modal = ({
             title,
-            content,
-            bodyContent
+            // content,
+            bodyContent,
         }) => {
             return new Promise((resolve) => {
                 Modal.components = {
@@ -18,7 +18,7 @@ export default {
                 let modalEl = new modal({
                     propsData: {
                         title,
-                        content,
+                        // content,
                         resolve,
                     }
                 }).$mount().$el;

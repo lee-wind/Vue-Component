@@ -190,6 +190,7 @@
     .date{
         position: relative;
         display: inline-block;
+        vertical-align: top;
         width: calc((40px + 5px * 2) * 7 + 1px * 2);
         input{
             width: 100%;

@@ -3,7 +3,7 @@
         <transition name="slide" @after-leave="afterLeave">
             <div class="container" v-if="show">
                 <div class="header">
-
+                    Alert
                 </div>
                 <div class="body">
                     {{text}}
@@ -61,6 +61,7 @@
         transition: all .3s;
     }
     .alert{
+        font-size: 18px;
         &.fade-in{
             background-color: rgba(0, 0, 0, .5);
             @include transition;
@@ -88,14 +89,15 @@
             @include center;
             background-color: #ffffff;
             .header{
-
+                padding: 10px;
             }
             .body{
-                width: 200px;
+                padding: 10px;
+                min-width: 300px;
                 min-height: 100px;
             }
             .footer{
-
+                padding: 10px;
             }
         }
         @mixin slide{

@@ -63,6 +63,13 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+    .input{
+        input{
+            padding: 0 10px;
+            height: 50px;
+            line-height: 50px;
+            border: 1px solid grey;
+        }
+    }
 </style>

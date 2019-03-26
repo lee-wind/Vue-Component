@@ -3,16 +3,16 @@
         <button @click="alert">alert</button>
         <button @click="modal">modal</button>
         <button @click="confirm">confirm</button>
-        <Button></Button>
+        <!--<Button></Button>-->
     </div>
 </template>
 
 <script>
-    import Button from './Button'
+    import ModalBody from './ModalBody'
     export default {
         name: "Plugin",
         components: {
-            Button
+            ModalBody
         },
         methods: {
             alert(){
@@ -20,7 +20,8 @@
             },
             modal(){
                 this.$modal({
-                    bodyContent: Button
+                    title: '变身',
+                    bodyContent: ModalBody
                 });
             },
             confirm(){
@@ -36,6 +37,12 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+    .plugins{
+        font-size: 24px;
+        button{
+            padding: 10px;
+            border: 1px solid grey;
+        }
+    }
 </style>

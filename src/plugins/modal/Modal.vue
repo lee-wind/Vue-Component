@@ -1,17 +1,21 @@
 <template>
-    <MyMask ref="mask">
-        <div class="header">
-            <span class="close" @click="$emit('close');"></span>
-            <p class="title text-ellipsis">{{title}}</p>
-        </div>
-        <div class="body">
-            <body-content></body-content>
-        </div>
-        <div class="footer">
-            <button @click="cancel">取消</button>
-            <button @click="confirm">确定</button>
-        </div>
-    </MyMask>
+    <div class="modal" :class="{ 'fade-in': fadeIn, 'fade-out': !fadeIn }">
+        <transition name="slide" @after-leave="afterLeave">
+            <div class="container" v-if="show">
+                <div class="header">
+                    <span class="close pointer" @click="close"></span>
+                    <p class="title text-ellipsis">{{title}}</p>
+                </div>
+                <div class="body">
+                   <body-content></body-content>
+                </div>
+                <div class="footer">
+                    <button @click="cancel">取消</button>
+                    <button @click="confirm">确定</button>
+                </div>
+            </div>
+        </transition>
+    </div>
 </template>
 
 <script>
@@ -24,11 +28,12 @@
         methods: {
             confirm(){
                 this.resolve();
-                this.$emit('close');
+                this.close();
+                //this.$emit('close');
             },
             cancel(){
-                // this.close();
-                this.$emit('close');
+                this.close();
+                //this.$emit('close');
             },
         }
     }
@@ -39,6 +44,7 @@
         transition: all .3s;
     }
     .modal{
+        font-size: 18px;
         &.fade-in{
             background-color: rgba(0, 0, 0, .5);
             @include transition;
@@ -66,6 +72,7 @@
             @include center;
             background-color: #ffffff;
             .header{
+                padding: 10px;
                 .close{
                     float: right;
                     &::after{
@@ -75,11 +82,12 @@
                 }
             }
             .body{
-                /*width: 200px;*/
+                padding: 10px;
+                min-width: 300px;
                 min-height: 100px;
             }
             .footer{
-
+                padding: 10px;
             }
         }
         @mixin slide{

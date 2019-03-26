@@ -2,14 +2,15 @@
     <form>
         {{selectedRadio}}
         <div class="form-item">
-            <button @click="setRadio">设置Radio</button>
+            <!--<button @click="setRadio">Radio设置</button>-->
+           <button>Radio设置</button>
             <Radio v-for="radio in radios" v-model="selectedRadio"
                    name="'sex'" :value="radio.id" :key="radio.id">
                 {{radio.value}}</Radio>
         </div>
         {{selectedCheckbox}}
         <div class="form-item">
-            <button @click="setCheckBox">设置checkBox</button>
+            <button @click="setCheckBox">checkBox设置</button>
             <Checkbox v-for="checkbox in checkBoxs" v-model="selectedCheckbox"
                    :value="checkbox.id" :key="checkbox.id">
                 {{checkbox.value}}</Checkbox>
@@ -46,6 +47,10 @@
                 selectedCheckbox: [3],
             }
         },
+        created(){
+            this.setRadio();
+            this.setCheckBox();
+        },
         mounted(){
             //this.selectedCheckbox.push(3);
         },
@@ -73,5 +78,13 @@
 </script>
 
 <style scoped lang="scss">
-
+    form{
+        font-size: 28px;
+        button{
+            height: 50px;
+            line-height: 50px;
+            border: 1px solid #333333;
+            padding: 0 10px;
+        }
+    }
 </style>

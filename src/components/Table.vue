@@ -71,6 +71,9 @@
 </script>
 
 <style lang="scss">
+    .table{
+        font-size: 18px;
+    }
     table{
         width: 400px;
     }
