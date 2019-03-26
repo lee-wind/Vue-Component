@@ -8,6 +8,12 @@ Select, Pagination, Date, Time, Radio, CheckBox, Input, Table
 插件:  
 Alert, Confirm, Modal
 
+地址:
+http://localhost:8080/#/  
+http://localhost:8080/#/form  
+http://localhost:8080/#/table  
+http://localhost:8080/#/plugin  
+
 ## Build Setup
 
 ``` bash
